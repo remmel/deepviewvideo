@@ -19,8 +19,8 @@ import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader.js'
 
 
 function loadTextureAtlasAndLayerGeometries() {
-  const baseUrl =
-      'https://storage.googleapis.com/immersive-lf-video-siggraph2020/welder/lmta';
+  // const baseUrl = 'https://storage.googleapis.com/immersive-lf-video-siggraph2020/welder/lmta';
+  const baseUrl = 'https://www.metalograms.com/ftp/vv/deepviewvideo/immersive-lf-video-siggraph2020/welder/lmta'
 
   // const baseUrl = '/dataset/immersive-lf-video-siggraph2020/welder/lmta';
 
