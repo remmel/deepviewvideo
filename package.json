@@ -1,0 +1,23 @@
+{
+  "name": "deepviewvideo",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "simple_viewer/viewer.js",
+  "scripts": {
+    "dev": "ssl-serve --ssl",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remmel/deepviewvideo.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/remmel/deepviewvideo/issues"
+  },
+  "homepage": "https://github.com/remmel/deepviewvideo#readme",
+  "devDependencies": {
+    "ssl-serve": "^6.5.8"
+  }
+}

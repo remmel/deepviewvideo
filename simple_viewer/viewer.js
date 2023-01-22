@@ -13,9 +13,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import * as THREE from 'three'
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js'
+import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader.js'
+
+
 function loadTextureAtlasAndLayerGeometries() {
   const baseUrl =
       'https://storage.googleapis.com/immersive-lf-video-siggraph2020/welder/lmta';
+
+  // const baseUrl = '/dataset/immersive-lf-video-siggraph2020/welder/lmta';
 
   const atlasUrl = baseUrl + '/texture_atlas_rgba.png';
   const textureLoader = new THREE.TextureLoader();
@@ -35,7 +42,7 @@ function loadTextureAtlasAndLayerGeometries() {
         '.ply');
   }
 
-  const plyLoader = new THREE.PLYLoader();
+  const plyLoader = new PLYLoader();
   const geometryPromises = geometryUrls.map(
       url => new Promise(
           (resolve, reject) =>
@@ -46,6 +53,7 @@ function loadTextureAtlasAndLayerGeometries() {
 
 function setupScene(textureAtlas, layerGeometries) {
   const material = new THREE.ShaderMaterial({
+    //language=glsl
     vertexShader: `
   varying vec2 vTexCoords;
   void main() {
@@ -56,7 +64,7 @@ function setupScene(textureAtlas, layerGeometries) {
     gl_Position = projectionMatrix * modelViewMatrix * pos;
   }
 `,
-
+    //language=glsl
     fragmentShader: `
   varying vec2 vTexCoords;
   uniform sampler2D atlas;
@@ -115,6 +123,9 @@ function setupRenderer(canvas, camera, scene) {
   const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.xr.enabled = true;
+  renderer.xr.setReferenceSpaceType('local');
+  document.body.appendChild( VRButton.createButton( renderer ) );
   renderer.setAnimationLoop(() => {
     renderer.render(scene, camera);
   });

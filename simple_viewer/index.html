@@ -34,7 +34,14 @@ limitations under the License. -->
 
     </div>
 
-    <script src="threejs_bin.js"></script>
-    <script src="viewer.js"></script>
+    <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.module.js",
+                    "three/" : "https://cdn.jsdelivr.net/npm/three@0.148.0/"
+                }
+            }
+    </script>
+    <script type=module src="viewer.js"></script>
   </body>
 </html>
